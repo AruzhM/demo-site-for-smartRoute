@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRoute Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="page-header">
+        <h1>SmartRoute</h1>
+        <p>Delivery Route Selection — Strategy Pattern Demo</p>
+    </header>
+
+    <main class="container">
+        <div class="main-grid">
+            <section class="panel">
+                <h2>Delivery settings</h2>
+
+                <label for="strategy">Choose a strategy</label>
+                <select id="strategy">
+                    <option value="URGENT">Fastest (URGENT)</option>
+                    <option value="ECONOMY">Cheapest (ECONOMY)</option>
+                    <option value="ECO">Eco-Friendly (ECO)</option>
+                    <option value="STANDARD">Balanced (STANDARD)</option>
+                    <option value="WEATHER">Weather-Aware (extra)</option>
+                </select>
+
+                <label for="budget">Maximum budget: <span id="budgetValue">6000 KZT</span></label>
+                <input type="range" id="budget" min="100" max="7000" step="25" value="6000">
+
+                <label for="deadline">Delivery deadline: <span id="deadlineValue">45 min</span></label>
+                <input type="range" id="deadline" min="20" max="65" step="1" value="45">
+
+                <label for="weather">Weather severity: <span id="weatherValue">3 / 10</span></label>
+                <input type="range" id="weather" min="0" max="10" step="1" value="3">
+                <p class="hint">Weather affects only the Weather-Aware strategy.</p>
+
+                <button type="button" id="resetButton">Reset settings</button>
+            </section>
+
+            <section class="panel">
+                <h2>Recommended route</h2>
+                <p id="strategyName" class="subheading"></p>
+                <div id="result" aria-live="polite"></div>
+            </section>
+        </div>
+
+        <section class="panel">
+            <div class="section-heading">
+                <h2>Candidate routes</h2>
+                <span id="routeCount" class="subheading"></span>
+            </div>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Route</th>
+                            <th>Time</th>
+                            <th>Total cost</th>
+                            <th>CO₂</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="routesTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Compare strategies</h2>
+            <p class="hint">All five strategies use the same STANDARD delivery request, budget and deadline. Weather-Aware uses the weather slider.</p>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Strategy</th>
+                            <th>Selected route</th>
+                            <th>Time</th>
+                            <th>Total cost</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Weather simulation</h2>
+            <p class="hint">The same Weather-Aware algorithm is tested under four weather levels.</p>
+            <div id="weatherExamples" class="weather-grid"></div>
+        </section>
+
+        <section class="panel">
+            <h2>Extra work in my project</h2>
+            <ul>
+                <li><strong>Weather model:</strong> route risk and weather severity affect route selection.</li>
+                <li><strong>Interactive Java simulator:</strong> users can enter their own delivery conditions in the console.</li>
+                <li><strong>Browser demo:</strong> this page makes the results easier to explore visually.</li>
+            </ul>
+        </section>
+
+        <footer>
+            This is a simple browser demo using JavaScript. The main Strategy Pattern implementation is in Java.
+        </footer>
+    </main>
+</body>
+</html>
